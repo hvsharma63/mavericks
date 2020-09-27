@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
-
 Route::post('/contact-us', 'App\Http\Controllers\Api\ContactController@store');
 Route::get('/gallery', 'App\Http\Controllers\Api\GalleryController@clientIndex');
 
@@ -26,6 +24,7 @@ Route::get('images/{filename}', function ($filename) {
 
 Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
 
+    Route::post('/login', 'App\Http\Controllers\Api\AuthController@login')->withoutMiddleware(['auth:api']);
     Route::group(['prefix' => 'contact-us'], function () {
         Route::get('/', 'App\Http\Controllers\Api\ContactController@index');
         // Route::get('connect', ['as' => 'connect', 'uses' = > 'AccountController@connect']);
