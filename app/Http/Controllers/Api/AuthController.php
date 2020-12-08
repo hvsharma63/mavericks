@@ -11,6 +11,7 @@ class AuthController extends Controller
     //
     public function login(Request $request)
     {
+        dd($request->all());
         $data = [
             'email' => $request->email,
             'password' => $request->password
