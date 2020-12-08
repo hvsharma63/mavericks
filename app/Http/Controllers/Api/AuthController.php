@@ -13,6 +13,10 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         try {
+            $data = [
+                'email' => $request->email,
+                'password' => $request->password
+            ];
             if (auth()->attempt($data)) {
                 $token = auth()->user()->createToken(sha1(time()))->accessToken;
                 return response()->json(['token' => $token], 200);
@@ -22,10 +26,6 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             throw new HttpException(500, $e->getMessage());
         }
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
  
     }
 
