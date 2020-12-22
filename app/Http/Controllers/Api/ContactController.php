@@ -37,7 +37,7 @@ class ContactController extends Controller
             'first_name' => 'required|min:3',
             'last_name' => 'required|min:3',
             'email' => 'required|email:rfc,dns',
-            'phone_number' => 'required|between:12,15',
+            'phone_number' => 'required|between:10,15',
             'message' => 'required|min:3|max:255'
         ]);
 
